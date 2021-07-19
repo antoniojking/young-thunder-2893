@@ -18,12 +18,12 @@ RSpec.describe 'Movies Show Page' do
     @actor_5 = Actor.create!(name: 'Timothy Chalamet', age: 24)
     @actor_6 = Actor.create!(name: 'Jennifer Lawrence', age: 33)
     @actor_7 = Actor.create!(name: 'Rachel McAdams', age: 37)
-    MovieActors.create!(actor: @actor_1, movie: @movie_1)
-    MovieActors.create!(actor: @actor_2, movie: @movie_1)
-    MovieActors.create!(actor: @actor_5, movie: @movie_1)
-    MovieActors.create!(actor: @actor_2, movie: @movie_2)
-    MovieActors.create!(actor: @actor_4, movie: @movie_2)
-    MovieActors.create!(actor: @actor_7, movie: @movie_2)
+    MovieActor.create!(actor: @actor_1, movie: @movie_1)
+    MovieActor.create!(actor: @actor_2, movie: @movie_1)
+    MovieActor.create!(actor: @actor_5, movie: @movie_1)
+    MovieActor.create!(actor: @actor_2, movie: @movie_2)
+    MovieActor.create!(actor: @actor_4, movie: @movie_2)
+    MovieActor.create!(actor: @actor_7, movie: @movie_2)
   end
 
   # Story 2
@@ -47,10 +47,12 @@ RSpec.describe 'Movies Show Page' do
 
   it 'lists actors associated with each movie by age in ascending order' do
     visit "/movies/#{@movie_1.id}"
-    save_and_open_page
-    expect(page).to have_content(@movie_1.title)
-    expect(page).to have_content(@movie_1.creation_year)
-    expect(page).to have_content(@movie_1.genre)
+    # save_and_open_page
+    expect(page).to have_content(@actor_1.name)
+    expect(page).to have_content(@actor_2.name)
+    expect(page).to have_content(@actor_5.name)
+    expect(@actor_5.name).to appear_before(@actor_2.name)
+    expect(@actor_2.name).to appear_before(@actor_1.name)
   end
 
   xit 'lists the average age of actors associated with the movie' do

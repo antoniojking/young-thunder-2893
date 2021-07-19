@@ -3,7 +3,7 @@ class Movie < ApplicationRecord
   has_many :movie_actors
   has_many :actors, through: :movie_actors
 
-  def order_actors_by_age
-    require "pry"; binding.pry
-  end
+  # def order_actors_by_age
+  #   require "pry"; binding.pry
+  # end
 end

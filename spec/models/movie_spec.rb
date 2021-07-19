@@ -31,9 +31,9 @@ RSpec.describe Movie do
     MovieActor.create!(actor: @actor_7, movie: @movie_2)
   end
 
-  it 'lists actors associated with the movie by age from youngest to oldest' do
-    expect(@movie_1.order_actors_by_age.length).to eq(3)
-    expect(@movie_1.order_actors_by_age.first).to eq(@actor_5.name)
-    expect(@movie_1.order_actors_by_age.last).to eq(@actor_1.name)
-  end
+  # it 'lists actors associated with the movie by age from youngest to oldest' do
+  #   expect(@movie_1.order_actors_by_age.length).to eq(3)
+  #   expect(@movie_1.order_actors_by_age.first).to eq(@actor_5.name)
+  #   expect(@movie_1.order_actors_by_age.last).to eq(@actor_1.name)
+  # end
 end

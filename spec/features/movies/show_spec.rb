@@ -11,6 +11,19 @@ RSpec.describe 'Movies Show Page' do
     @movie_4 = @studio_2.movies.create!(title: 'The Kings Speech', creation_year: 2010, genre: 'Drama')
     @movie_5 = @studio_2.movies.create!(title: 'Black Widow', creation_year: 2020, genre: 'Action/Adventure')
     @movie_6 = @studio_3.movies.create!(title: 'Luca', creation_year: 2021, genre: 'Family')
+    @actor_1 = Actor.create!(name: 'Harrison Ford', age: 80)
+    @actor_2 = Actor.create!(name: 'Angelina Jolie', age: 45)
+    @actor_3 = Actor.create!(name: 'Owen Wilson', age: 45)
+    @actor_4 = Actor.create!(name: 'Brendan Frasier', age: 50)
+    @actor_5 = Actor.create!(name: 'Timothy Chalamet', age: 24)
+    @actor_6 = Actor.create!(name: 'Jennifer Lawrence', age: 33)
+    @actor_7 = Actor.create!(name: 'Rachel McAdams', age: 37)
+    MovieActors.create!(actor: @actor_1, movie: @movie_1)
+    MovieActors.create!(actor: @actor_2, movie: @movie_1)
+    MovieActors.create!(actor: @actor_5, movie: @movie_1)
+    MovieActors.create!(actor: @actor_2, movie: @movie_2)
+    MovieActors.create!(actor: @actor_4, movie: @movie_2)
+    MovieActors.create!(actor: @actor_7, movie: @movie_2)
   end
 
   # Story 2
@@ -23,14 +36,21 @@ RSpec.describe 'Movies Show Page' do
   # And I see the average age of all of the movie's actors
   it 'shows the movie and its attributes' do
     visit "/movies/#{@movie_1.id}"
+    # save_and_open_page
+    expect(page).to have_content(@movie_1.title)
+    expect(page).to have_content(@movie_1.creation_year)
+    expect(page).to have_content(@movie_1.genre)
+
+    expect(page).to_not have_content(@movie_2.title)
+    expect(page).to_not have_content(@movie_3.title)
+  end
+
+  it 'lists actors associated with each movie by age in ascending order' do
+    visit "/movies/#{@movie_1.id}"
     save_and_open_page
     expect(page).to have_content(@movie_1.title)
     expect(page).to have_content(@movie_1.creation_year)
     expect(page).to have_content(@movie_1.genre)
-  end
-
-  xit 'lists actors associated with each movie by age in ascending order' do
-
   end
 
   xit 'lists the average age of actors associated with the movie' do

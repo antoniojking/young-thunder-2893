@@ -23,7 +23,7 @@ RSpec.describe 'Movies Show Page' do
   # And I see the average age of all of the movie's actors
   it 'shows the movie and its attributes' do
     visit "/movies/#{@movie_1.id}"
-
+    save_and_open_page
     expect(page).to have_content(@movie_1.title)
     expect(page).to have_content(@movie_1.creation_year)
     expect(page).to have_content(@movie_1.genre)

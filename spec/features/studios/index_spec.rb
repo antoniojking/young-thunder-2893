@@ -22,7 +22,7 @@ RSpec.describe 'Studio Index Page' do
   # And underneath each studio, I see the titles of all of its movies.
   it 'lists all studios along with attributes and associated movie titles' do
     visit '/studios'
-    save_and_open_page
+    # save_and_open_page
     within("#studio-#{@studio_1.id}") do
       expect(page).to have_content(@studio_1.name)
       expect(page).to have_content(@studio_1.location)
